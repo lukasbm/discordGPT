@@ -14,9 +14,14 @@
 
 ## Train
 
-TODO
+Just call `python train.py`
+Every 500 iterations the model checkpoint will be saved in the output directory (default: `/out`)
 
 ## Disclaimer
 
 All code is run locally and none of your data is uploaded anywhere.
 See [pytorch privacy guidelines](https://discuss.pytorch.org/privacy) for more information.
+
+## References
+
+- https://github.com/karpathy/minGPT

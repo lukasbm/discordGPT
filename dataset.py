@@ -1,9 +1,11 @@
 import csv
 import os.path
-import torch
-from torch.utils.data import Dataset
-from typing import List
 import re
+from typing import List
+
+import torch
+from mingpt.utils import CfgNode
+from torch.utils.data import Dataset
 
 
 def load_channels() -> List[str]:
@@ -52,7 +54,13 @@ def load_text(channels: List[str]) -> str:
 
 
 class MessagesDataset(Dataset):
-    def __init__(self, data):
+    @staticmethod
+    def get_default_config():
+        cfg = CfgNode()
+        cfg.block_size = 128
+        return cfg
+
+    def __init__(self, config: CfgNode, data: str):
         chars = sorted(list(set(data)))
         data_size, vocab_size = len(data), len(chars)
         print('data has %d characters, %d unique.' % (data_size, vocab_size))
@@ -60,17 +68,17 @@ class MessagesDataset(Dataset):
         self.stoi = {ch: i for i, ch in enumerate(chars)}
         self.itos = {i: ch for i, ch in enumerate(chars)}
 
+        self._config = config
         self._data = data
         self._vocab_size = vocab_size
-        self._bock_size = 128
         self._data_size = data_size
 
     def __len__(self):
-        pass
+        return self.data_size - self.block_size
 
     @property
     def block_size(self):
-        return self._bock_size
+        return self._config.block_size
 
     @property
     def data_size(self):
@@ -83,7 +91,6 @@ class MessagesDataset(Dataset):
     def __getitem__(self, idx):
         # grab a chunk of (block_size + 1) characters from the data
         chunk = self._data[idx: idx + self.block_size + 1]
-        print(chunk)
         # encode every character to an integer
         dix = [self.stoi[s] for s in chunk]
         # return as tensors
@@ -92,6 +99,7 @@ class MessagesDataset(Dataset):
         return x, y
 
 
+# just for testing...
 if __name__ == "__main__":
     text = load_text(load_channels())
     ds = MessagesDataset(text)
