@@ -4,4 +4,4 @@ torchvision
 torchaudio
 
 # min GPT
-./minGPT
+git+https://github.com/karpathy/minGPT.git@master
