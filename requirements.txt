@@ -1,3 +1,7 @@
+# torch
 torch
 torchvision
 torchaudio
+
+# min GPT
+./minGPT
