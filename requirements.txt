@@ -5,3 +5,6 @@ torchaudio
 
 # min GPT
 git+https://github.com/karpathy/minGPT.git@master
+
+# utils
+pandas

@@ -171,3 +171,6 @@ package/
 
 # dataset information
 channels.txt
+
+# logs and output
+out/
