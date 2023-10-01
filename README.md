@@ -8,4 +8,15 @@
 4. create a python env and install the dependencies: `python3 -m venv venv && pip install -U -r requirements.txt`
 5. create a file called `channels.txt` in the root of the repository.
    Place the IDs of the channels you want to include in the training dataset in there.
-   One ID per line. **TIP:** use [developer mode](https://www.howtogeek.com/714348/how-to-enable-or-disable-developer-mode-on-discord/) to quickly get the channel ids
+   One ID per line. **TIP:**
+   use [developer mode](https://www.howtogeek.com/714348/how-to-enable-or-disable-developer-mode-on-discord/) to quickly
+   get the channel ids
+
+## Train
+
+TODO
+
+## Disclaimer
+
+All code is run locally and none of your data is uploaded anywhere.
+See [pytorch privacy guidelines](https://discuss.pytorch.org/privacy) for more information.
